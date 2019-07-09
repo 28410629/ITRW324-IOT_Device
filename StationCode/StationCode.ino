@@ -32,7 +32,7 @@ void loop() {
       StaticJsonBuffer<300> JSONbuffer;   //Declaring static JSON buffer
       JsonObject& JSONencoder = JSONbuffer.createObject(); 
  
-      JSONencoder["Station"] = String();
+      JSONencoder["Station"] = String(ESP.getChipId());
       JSONencoder["Temperature"] = String(bme.readTemperature());
       JSONencoder["Humidity"] = String(bme.readHumidity());
       JSONencoder["AirPressure"] = String(bme.readPressure());
