@@ -35,17 +35,17 @@ void loop() {
       // create json to send
       const size_t capacity = JSON_OBJECT_SIZE(8);
       DynamicJsonDocument doc(capacity);
-      doc["Station"] = String(ESP.getChipId());
+      doc["StationId"] = String(ESP.getChipId());
       doc["AirPressure"] = String(bme.readPressure());
       doc["Humidity"] = String(bme.readHumidity());
-      doc["Light"] = String(analogRead(LIGHTSENSORPIN));
+      doc["AmbientLight"] = String(analogRead(LIGHTSENSORPIN));
       doc["Temperature"] = String(bme.readTemperature());
-      serializeJson(doc, Serial);
-      Serial.println("");
+      serializeJsonPretty(doc, Serial);
+      
 
       HTTPClient http;    //Declare object of class HTTPClient
  
-      http.begin("http://51.145.50.160:5000/api/values");      //Specify request destination
+      http.begin("http://weatherstationapi.ddns.net:5000/api/post/reading");      //Specify request destination
       http.addHeader("Content-Type", "application/json");  //Specify content-type header
 
       String json;
@@ -54,8 +54,9 @@ void loop() {
       
       String payload = http.getString();                  //Get the response payload
  
-      //Serial.println(httpCode);   //Print HTTP return code
-      Serial.println(payload);    //Print request response payload
+      Serial.println();
+      Serial.print("Station ID:");    
+      Serial.println(String(ESP.getChipId()));
  
       http.end();
  
@@ -64,7 +65,7 @@ void loop() {
         digitalWrite(onBoardLED, LOW); 
         isConnected = false;
       }
-      Serial.println("WIFI disconnected!");
+      
     }
     delay(30000);
 }
