@@ -13,13 +13,16 @@
 
 Adafruit_BME280 bme;
 bool isConnected = false;
-const int onBoardLED = 2;
+const int onBoardLED = 2; // WIFI Connection
+const int onBoardLED2 = 16; // Device On
 
 void setup() {    
     Serial.begin(115200);
     WiFiManager wifiManager;
     wifiManager.autoConnect("WeatherStation : " + ESP.getChipId(), "connect");
-    pinMode(2, OUTPUT); // on-board led
+    pinMode(onBoardLED, OUTPUT);
+    pinMode(onBoardLED2, OUTPUT); 
+    digitalWrite(onBoardLED, LOW);
     bme.begin(0x76);  
     pinMode(LIGHTSENSORPIN, INPUT);
     // Print user register information.
