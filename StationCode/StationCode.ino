@@ -18,7 +18,7 @@ const int onBoardLED = 2;
 void setup() {    
     Serial.begin(115200);
     WiFiManager wifiManager;
-    wifiManager.autoConnect("WeatherStation : " + ESP.getChipId(), "connect");
+    wifiManager.autoConnect("WeatherStation", "connect");
     pinMode(onBoardLED, OUTPUT); // on-board led
     bme.begin(0x76);  
     pinMode(LIGHTSENSORPIN, INPUT);
@@ -53,7 +53,9 @@ void loop() {
       serializeJson(doc, json);
       http.POST(json);   //Send the request
       http.end();
- 
+      
+      Serial.println("Entering deep sleep mode.");
+      ESP.deepSleep(60000000, WAKE_RF_DEFAULT);
     } else {
       if(isConnected) {
         // Alert user that station is disconnected from WIFI
@@ -61,6 +63,4 @@ void loop() {
         isConnected = false;
       }
     }
-    Serial.println("Entering deep sleep mode.");
-    ESP.deepSleep(60000000, WAKE_RF_DEFAULT);
 }
