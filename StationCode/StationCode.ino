@@ -55,7 +55,7 @@ void loop() {
       http.end();
       
       Serial.println("Entering deep sleep mode.");
-      ESP.deepSleep(60000000, WAKE_RF_DEFAULT);
+      ESP.deepSleep(900000000, WAKE_RF_DEFAULT);
     } else {
       if(isConnected) {
         // Alert user that station is disconnected from WIFI
