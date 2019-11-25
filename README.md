@@ -1,4 +1,4 @@
-# ITRW324 University Project
+# ITRW324 Semester Project
 Other repositories for project.
 * [Angular Front-end](https://github.com/coenraadhuman/WeatherStation_Angular)
 * [.Net Core Web API](https://github.com/coenraadhuman/WeatherStation_API)
