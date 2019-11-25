@@ -1,5 +1,10 @@
-# WeatherStation_Unit
-This is the repository for the micro-controllers that we use to make a Station with.
+# ITRW324 University Project
+Other repositories for project.
+* [Angular Front-end](https://github.com/coenraadhuman/WeatherStation_Angular)
+* [.Net Core Web API](https://github.com/coenraadhuman/WeatherStation_API)
+
+## WeatherStation_Unit
+This is the repository for the micro-controllers that we use to make a station with.
 
 Technologies
 ------------
